@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
+import 'package:flutteflutr_mobile_vision/flutter_mobile_vision.dart';
 
 void main() => runApp(new MyApp());
 
