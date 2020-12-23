@@ -35,16 +35,39 @@ class _OCRPageState extends State<OCRPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
+                    color: Colors.white,
+                    width: MediaQuery.of(context).size.width,
                     height: 100,
-                    child: Text(_textScanResults == null ? "" : _textScanResults.text, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+                    child: Column(
+                      children: [
+                        Text(
+                          _textScanResults == null ? "" : _textScanResults.text,
+                          style:
+                              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          _textScanResults == null ? "" : getExpiryDate(_textScanResults.text),
+                          style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    )),
               ],
             ),
           ],
         ),
       ],
     ));
+  }
+
+  getExpiryDate(String text){
+    if (text == null) return "";
+    RegExp regExp = new RegExp(
+      r"\d{4}-\d{2}-\d{2}",
+      caseSensitive: false,
+      multiLine: true,
+    );
+    return regExp.firstMatch(text).toString();
   }
 
   Widget _buildResults(VisionText scanResults) {
